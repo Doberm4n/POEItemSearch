@@ -8,7 +8,7 @@ Supports poeapp.com (https://poeapp.com/)
 
 > This app does not change any of the game files and do not interfere with memory used by game. All that it does is reading clipboard and opens browser to search item on trade site
 
-![alt text](https://github.com/Doberm4n/POETradeWhisperNotifier/blob/master/res/screenshot.png)
+![alt text](https://github.com/Doberm4n/POEItemSearch/blob/master/res/screenshot.png)
 
 **Usage:** 
 1. before first run, open \config\config.json:

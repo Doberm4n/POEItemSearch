@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
+    <file alias='search.png'>search.png</file>
     <file alias='search-icon32.png'>search-icon32.png</file>
   </qresource>
 </RCC>

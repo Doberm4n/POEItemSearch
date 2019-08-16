@@ -15,20 +15,20 @@ import webbrowser
 # dummy imports for pyinstaller. See
 # https://github.com/google/rekall/issues/303
 if 0:
-    import UserList
-    import UserString
-    import UserDict
-    import itertools
-    import collections
-    import future.backports.misc
-    import commands
-    import base64
-    import __buildin__
-    import math
-    import reprlib
-    import functools
-    import re
-    import subprocess
+	import UserList
+	import UserString
+	import UserDict
+	import itertools
+	import collections
+	import future.backports.misc
+	import commands
+	import base64
+	import __buildin__
+	import math
+	import reprlib
+	import functools
+	import re
+	import subprocess
 
 myappid = 'mycompany.myproduct.subproduct.version'
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
@@ -50,7 +50,6 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 		self.config = self.loadConfig()
 		self.browserPath = self.config['settings']['browserPath'].encode("utf-8")
 		self.leagueName = self.config['settings']['leagueName']
-		#QNetworkProxy.setApplicationProxy(QNetworkProxy(QNetworkProxy.HttpProxy, "10.30.52.100", 808))
 
 
 	def pasteFromClipboard(self):
@@ -58,10 +57,11 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 		try:
 			self.dataTextEdit.setPlainText('')
 			clipboardData = temp.selection_get(selection = "CLIPBOARD").splitlines()
+			if not 'Rarity' in clipboardData[0]: return
 			itemName = clipboardData[1]
 			data = {
-  				"attributes.league": self.leagueName,
-  				"info.tokenized.fullName": itemName
+				"attributes.league": self.leagueName,
+				"info.tokenized.fullName": itemName
 			};
 			self.dataTextEdit.setPlainText(itemName)	
 			lz_string = lzstring.LZString()
@@ -107,9 +107,8 @@ class aboutDialog(QtGui.QDialog, GUIAbout.Ui_Dialog):
 def main():
 	app = QtGui.QApplication(sys.argv)
 	appIco = QtGui.QIcon()
-	#appIco.addFile(':Device-blockdevice-cubes-icon16.png', QtCore.QSize(16,16))
-	#appIco.addFile(':Device-blockdevice-cubes-icon32.png', QtCore.QSize(32,32))
-	#app.setWindowIcon(appIco)
+	appIco.addFile(':search.png', QtCore.QSize(256,256))
+	app.setWindowIcon(appIco)
 	form = POEItemSearchApp()
 	form.show()
 	app.exec_()
