@@ -54,7 +54,7 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 
 
 	def pasteFromClipboard(self):
-			temp = Tk()
+		temp = Tk()
 		try:
 			self.dataTextEdit.setPlainText('')
 			clipboardData = temp.selection_get(selection = "CLIPBOARD").splitlines()
