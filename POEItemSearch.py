@@ -12,6 +12,7 @@ import ctypes
 import json
 import lzstring
 import webbrowser
+import subprocess
 # dummy imports for pyinstaller. See
 # https://github.com/google/rekall/issues/303
 if 0:
@@ -28,14 +29,14 @@ if 0:
 	import reprlib
 	import functools
 	import re
-	import subprocess
+	
 
 myappid = 'mycompany.myproduct.subproduct.version'
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 form = None
 formAbout = None
-version = '0.9.0'
+version = '0.9.1'
 linkHTML = '<a href="https://github.com/Doberm4n/POEItemSearch">https://github.com/Doberm4n/POEItemSearch</a>'
 link = 'https://github.com/Doberm4n/POEItemSearch'
 
@@ -53,8 +54,8 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 
 
 	def pasteFromClipboard(self):
-		temp = Tk()
-		try:
+			temp = Tk()
+		#try:
 			self.dataTextEdit.setPlainText('')
 			clipboardData = temp.selection_get(selection = "CLIPBOARD").splitlines()
 			if not 'Rarity' in clipboardData[0]: return
@@ -66,9 +67,9 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 			self.dataTextEdit.setPlainText(itemName)	
 			lz_string = lzstring.LZString()
 			data = lz_string.compressToBase64(unicode(json.dumps(data)))
-			os.system(self.browserPath + " https://poeapp.com/#/search/" + data)
-		except:
-			pass
+			subprocess.Popen(self.browserPath + " https://poeapp.com/#/search/" + data, shell=True)
+		#except:
+			#pass
 		
 
 	def loadConfig(self):
