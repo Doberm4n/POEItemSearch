@@ -55,7 +55,7 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 
 	def pasteFromClipboard(self):
 			temp = Tk()
-		#try:
+		try:
 			self.dataTextEdit.setPlainText('')
 			clipboardData = temp.selection_get(selection = "CLIPBOARD").splitlines()
 			if not 'Rarity' in clipboardData[0]: return
@@ -68,8 +68,8 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 			lz_string = lzstring.LZString()
 			data = lz_string.compressToBase64(unicode(json.dumps(data)))
 			subprocess.Popen(self.browserPath + " https://poeapp.com/#/search/" + data, shell=True)
-		#except:
-			#pass
+		except:
+			pass
 		
 
 	def loadConfig(self):
