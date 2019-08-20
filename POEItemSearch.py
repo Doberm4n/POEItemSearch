@@ -36,7 +36,7 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 form = None
 formAbout = None
-version = '0.9.1'
+version = '0.9.2'
 linkHTML = '<a href="https://github.com/Doberm4n/POEItemSearch">https://github.com/Doberm4n/POEItemSearch</a>'
 link = 'https://github.com/Doberm4n/POEItemSearch'
 
@@ -51,6 +51,7 @@ class POEItemSearchApp(QtGui.QMainWindow, GUIMain.Ui_MainWindow):
 		self.config = self.loadConfig()
 		self.browserPath = self.config['settings']['browserPath'].encode("utf-8")
 		self.leagueName = self.config['settings']['leagueName']
+		self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
 
 
 	def pasteFromClipboard(self):
@@ -98,6 +99,7 @@ class aboutDialog(QtGui.QDialog, GUIAbout.Ui_Dialog):
 		self.linkLabel.setText(linkHTML)
 		pic = self.picLabel
 		pic.setPixmap(QtGui.QPixmap(":search-icon32.png"))
+		self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
 
 
 	def openURL(self, linkStr):
